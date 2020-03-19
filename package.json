@@ -1,0 +1,30 @@
+{
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^1.19.1"
+  },
+  "scripts": {
+    "lint": "eslint . --ext .js,.ts --ignore-path .gitignore",
+    "fix": "npm run lint -- --fix"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx}": [
+        "prettier --write",
+        "eslint --fix --ext .js",
+        "git add ."
+    ]
+  },
+  "husky": {
+    "hooks": {
+        "pre-commit": "lint-staged",
+        "commit-msg": "commitlint -e $GIT_PARAMS"
+    }
+  }
+}
